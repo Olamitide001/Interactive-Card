@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- <link rel="stylesheet" href="https://fonts.google.com/specimen/Space+Grotesk">   -->
+  <title>Frontend Mentor | Interactive card details form</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <!-- <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style> -->
+</head>
+<body>
+<div class="layout">
+  <section class="cardpanel">
+    <div class="card card-front">
+      <img src="./images/bg-card-front.png" id="front-image">
+      <div class="logo"><img src="./images/card-logo.svg" id="front-logo"></div>
+      <p class="cardnumber">0000 0000 0000 0000</p>
+      <p class="holdersname">FELICIA LEIRE</p>
+      <div class="date">
+      <p class="expirydatemonth">09</p>
+      <span>/</span>
+      <p class="expirydateyear">00</p>
+    </div>
+    </img>
+    </div>
+    <div class="card card-back">
+      <img src="./images/bg-card-back.png" id="back-image">
+      <p class="cvv-number">123</p>
+    </img>
+    </div>
+  </section>
+  <section class="formpanel">
+    <form class="details">
+      <h3 class="cardname">CARDHOLDER NAME</h3>
+      <input type="text" id="name" placeholder="e.g Felicia Leire">
+      <h3 class="holdernumber">CARD NUMBER</h3>
+      <input type="text" id="number" placeholder="e.g  9999 9999 9999 9999">
+      <p class="number-error">wrong format/numbers only</p>
+      <div class="number-input">
+        <div class="lines"> <h3 class="exp-date">EXP. DATE(MM/YY)</h3>
+          <h3 class="cvv">CVC</h3></div>
+          <input type="text" id="month" placeholder="MM" maxlength="2">
+          <input type="text" id="year" placeholder="YY" maxlength="2">
+          <input type="text" id="cvc" placeholder="e.g 123" maxlength="3">
+          <p class="date-error">Can't be blank</p>
+          <p class="cvc-error">Can't be blank</p>
+      </div>
+
+      <button class="submit">Confirm</button>
+    </form>
+
+    <div class="final-page">
+      <img src="./images/icon-complete.svg" alt="Thanks" class="complete">
+      <div class="content">
+      <p class="bold">Thank you!</p>
+      <p class="light">We've added your card details</p>
+    </div>
+      <button class="continue">Continue</button>
+    </div>
+  </section>
+</div>
+  <!-- 0000 0000 0000 0000
+  Jane Appleseed
+  00/00
+
+  000
+
+  Cardholder Name
+  e.g. Jane Appleseed
+
+  Card Number
+  e.g. 1234 5678 9123 0000
+
+  Exp. Date (MM/YY)
+  MM
+  YY
+
+  CVC
+  e.g. 123
+
+  Confirm -->
+
+  <!-- Completed state start -->
+
+  <!-- Thank you!
+  We've added your card details
+  Continue -->
+  
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+  <script src="script.js"></script>
+</body>
+</html>
