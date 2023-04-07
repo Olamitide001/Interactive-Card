@@ -59,12 +59,7 @@ const updateUI = function () {
 function holderName() {
   if(nameInput.value){
   nameInput.value = nameInput.value
-      .toLowerCase()
-      .split(" ")
-      .map((curr) => {
-        return curr[0].toUpperCase() + curr.slice(1);
-      })
-      .join(" ");
+      .toUpperCase()
     nameInput.style.border = "0.5px solid black";
     nameField.textContent = "";
     nameField.style.color = "white";
@@ -207,9 +202,11 @@ continueBtn.addEventListener("click", function () {
   expiryYear.value = "";
   cvcNumber.value = "";
   dateError.style.opacity = 0;
-  nameField.textContent = "FELICIA LEIRE";
+  nameField.textContent = "JANE APPLESEED";
   cardNumberfield.textContent = "0000 0000 0000 0000";
   expiryMonth.textContent = "09";
   expiryYear.textContent = "00";
   cvcField.textContent = "123";
+  expiryMonthField.textContent ="00"
+  expiryYearField.textContent = "00"
 });
