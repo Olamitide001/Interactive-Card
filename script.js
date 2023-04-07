@@ -16,7 +16,7 @@ const formDisplay = document.querySelector(".details");
 const continuePage = document.querySelector(".final-page");
 const confirmBtn = document.querySelector(".submit");
 const allinputElement = document.querySelectorAll("input");
-const continueBtn = document.querySelector('.continue')
+const continueBtn = document.querySelector(".continue");
 
 dateError.style.opacity = 0;
 cvcError.style.opacity = 0;
@@ -49,29 +49,29 @@ function cvvNumber() {
 
 //Implementing Card Name
 const updateUI = function () {
-  holderName(nameInput.value);
+  holderName();
   numberfield(cardNumber.value);
   monthField(Number(expiryMonth.value));
-  yearField(expiryYear.value);
+  yearField();
   cvcNumfield();
 };
 
-function holderName(str) {
-  if (nameInput.value !== "") {
-    nameInput.style.border = "0.5px solid black";
-    nameField.textContent = "";
-    nameField.style.color = "white";
-    str = str
+function holderName() {
+  if(nameInput.value){
+  nameInput.value = nameInput.value
       .toLowerCase()
       .split(" ")
       .map((curr) => {
         return curr[0].toUpperCase() + curr.slice(1);
       })
       .join(" ");
-    str.split(" ").map((curr, index) => {
+    nameInput.style.border = "0.5px solid black";
+    nameField.textContent = "";
+    nameField.style.color = "white";
+    nameInput.value.split(" ").map((curr, index) => {
       if (index > 0) {
         nameInput.style.border = "0.5px solid black";
-        nameField.textContent = str;
+        nameField.textContent = nameInput.value;
       } else {
         nameInput.style.border = "2px solid red";
         nameField.textContent = "";
@@ -83,9 +83,10 @@ function holderName(str) {
     nameField.style.color = "red";
   }
 }
+
 //Implementing card number
 function numberfield(num) {
-  if (cardNumber.value !== "") {
+  if (cardNumber.value) {
     cardNumber.style.border = "0.5px solid black";
     cardNumberError.style.opacity = 0;
     num = num.replaceAll(" ", "");
@@ -114,8 +115,10 @@ function numberfield(num) {
 }
 //Implementing Expiry Date
 function monthField(month) {
-  if (expiryMonth.value !== "") {
-    const monthValid = expiryMonth.value.split("").map((curr) => {
+  if (expiryMonth.value) {
+    dateError.style.opacity = 0;
+    expiryMonth.style.border = "0.5px solid black";
+    expiryMonth.value.split("").map((curr) => {
       if (curr >= 0 && month <= 12) {
         expiryMonthField.textContent = month;
         expiryMonth.style.border = "0.5px solid black";
@@ -129,27 +132,34 @@ function monthField(month) {
     });
   } else {
     dateError.style.opacity = 1;
+    expiryMonth.style.border = "2px solid red";
   }
 }
 
-function yearField(year) {
-  const yearValid = expiryYear.value.split("").map((curr) => {
-    if (curr >= 0 && (year = 23) && year <= 26) {
-      expiryYearField.textContent = expiryYear.value;
-      expiryYear.style.border = "0.5px solid black";
-      dateError.style.opacity = 0;
-    } else {
-      expiryYearField.textContent = "00";
-      expiryYear.style.border = "2px solid red";
-      dateError.style.opacity = 1;
-      dateError.textContent = "invalid expiry date";
-    }
-  });
+function yearField() {
+  if (expiryYear.value) {
+    expiryYear.style.border = "0.5px solid black";
+    expiryYear.value.split("").map((curr) => {
+      if (curr >= 0 && expiryYear.value >= 23 && expiryYear.value <= 26) {
+        expiryYearField.textContent = expiryYear.value;
+        expiryYear.style.border = "0.5px solid black";
+        dateError.style.opacity = 0;
+      } else {
+        expiryYearField.textContent = "00";
+        expiryYear.style.border = "2px solid red";
+        dateError.style.opacity = 1;
+        dateError.textContent = "invalid expiry date";
+      }
+    });
+  }else{
+    expiryYear.style.border = "2px solid red";
+    dateError.style.opacity = 1;
+  }
 }
 
-//Implementinf cvv number
+//Implementing cvv number
 function cvcNumfield() {
-  if (cvcNumber.value !== "") {
+  if (cvcNumber.value) {
     cvcNumber.style.border = "0.5px solid black";
     cvcError.style.opacity = 0;
     cvcNumber.value.split("").map((curr) => {
@@ -165,38 +175,41 @@ function cvcNumfield() {
       }
     });
   } else {
+    cvcNumber.style.border = "2px solid red";
     cvcError.style.opacity = 1;
   }
 }
 
 confirmBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  updateUI()
-allinputElement.forEach((input,index) =>{
-    
-  if (input.value !=="")  {
-    counter++ 
-    if(counter < 10){
-    updateUI();
-  } else {
-    formDisplay.style.display = "none";
-    continuePage.style.display = "block";
-  }
-}
-})
+  updateUI();
+    if (
+      cvcField.textContent !== cvcNumber.value ||
+      expiryMonthField.textContent !== expiryMonth.value ||
+      expiryYearField.textContent !== expiryYear.value ||
+      cardNumber.style.border == "2px solid red" ||
+      nameInput.style.border == "2px solid red"
+    ) {
+      updateUI();
+    } else {
+      formDisplay.style.display = "none";
+      continuePage.style.display = "block";
+    }
 });
 
-continueBtn.addEventListener('click', function(){
+continueBtn.addEventListener("click", function () {
+  counter = 0;
   formDisplay.style.display = "block";
   continuePage.style.display = "none";
-  nameInput.value =""
-  cardNumber.value =""
-  expiryMonth.value =""
-  expiryYear.value = ""
-  cvcNumber.value=""
-  nameField.textContent ="FELICIA LEIRE"
-  cardNumberfield.textContent ="0000 0000 0000 0000"
-  expiryMonth.textContent="09"
-  expiryYear.textContent="00"
-  cvcField.textContent="123"
-})
+  nameInput.value = "";
+  cardNumber.value = "";
+  expiryMonth.value = "";
+  expiryYear.value = "";
+  cvcNumber.value = "";
+  dateError.style.opacity = 0;
+  nameField.textContent = "FELICIA LEIRE";
+  cardNumberfield.textContent = "0000 0000 0000 0000";
+  expiryMonth.textContent = "09";
+  expiryYear.textContent = "00";
+  cvcField.textContent = "123";
+});
